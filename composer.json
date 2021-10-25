@@ -1,5 +1,5 @@
 {
-    "description": "",
+    "description": "A prototype generator to quickly generate prototypes based on nodetype definitions.",
     "type": "neos-package",
     "name": "upassist/prototypegenerator",
     "require": {
