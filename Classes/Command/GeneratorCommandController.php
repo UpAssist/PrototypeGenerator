@@ -15,8 +15,10 @@ namespace UpAssist\PrototypeGenerator\Command;
  */
 
 use Neos\ContentRepository\Domain\Service\NodeTypeManager;
+use Neos\ContentRepository\Exception\NodeTypeNotFoundException;
 use Neos\Flow\Cli\CommandController;
 use Neos\Flow\Annotations as Flow;
+use Neos\Utility\Exception\FilesException;
 use UpAssist\PrototypeGenerator\Service\FusionService;
 
 /**
@@ -41,10 +43,10 @@ class GeneratorCommandController extends CommandController
    *
    * @param string|null $nodeType
    * @param bool $force
-   * @throws \Neos\ContentRepository\Exception\NodeTypeNotFoundException
-   * @throws \Neos\Utility\Exception\FilesException
+   * @throws NodeTypeNotFoundException
+   * @throws FilesException
    */
-    public function prototypeCommand(string $nodeType = null, bool $force = false)
+    public function prototypeCommand(string $nodeType, bool $force = false)
     {
         $nodeType = $this->fusionService->getPrototypeName($nodeType);
         $this->outputLine(sprintf('<info>💡 Looking for %s...</info>', $nodeType));
@@ -77,7 +79,7 @@ class GeneratorCommandController extends CommandController
      * Renders Atom prototype
      * @param string $prototypeName
      * @param bool $force
-     * @throws \Neos\Utility\Exception\FilesException
+     * @throws FilesException
      */
     public function atomCommand(string $prototypeName, bool $force = false)
     {
@@ -89,7 +91,7 @@ class GeneratorCommandController extends CommandController
      *
      * @param string $prototypeName
      * @param bool $force
-     * @throws \Neos\Utility\Exception\FilesException
+     * @throws FilesException
      */
     public function moleculeCommand(string $prototypeName, bool $force = false)
     {
@@ -101,7 +103,7 @@ class GeneratorCommandController extends CommandController
      *
      * @param string $prototypeName
      * @param bool $force
-     * @throws \Neos\Utility\Exception\FilesException
+     * @throws FilesException
      */
     public function organismCommand(string $prototypeName, bool $force = false)
     {
@@ -113,7 +115,7 @@ class GeneratorCommandController extends CommandController
      *
      * @param string $prototypeName
      * @param bool $force
-     * @throws \Neos\Utility\Exception\FilesException
+     * @throws FilesException
      */
     public function templateCommand(string $prototypeName, bool $force = false)
     {
@@ -125,7 +127,7 @@ class GeneratorCommandController extends CommandController
      * @param array $properties
      * @param bool $force
      * @param string|null $atomicPart
-     * @throws \Neos\Utility\Exception\FilesException
+     * @throws FilesException
      */
     private function generatePrototype(string $prototype, array $properties = [], bool $force = false, string $atomicPart = null): void
     {
@@ -147,7 +149,7 @@ class GeneratorCommandController extends CommandController
      *
      * @param string $prototypeName
      * @param bool $force
-     * @throws \Neos\Utility\Exception\FilesException
+     * @throws FilesException
      */
     public function extendedRendererCommand(string $prototypeName, bool $force = false)
     {
