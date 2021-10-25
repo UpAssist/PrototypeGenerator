@@ -67,14 +67,15 @@ There are a couple of commands at your disposal:
 
 | Command | Params | Example |
 | --- | --- | --- |
-| `generator:prototype` | --nodeType (name of your nodetype, if your set your packageKey in the settings, you can omit it here) | `./flow generator:prototype Content.TextWithImage` |
-| `generator:atom` | --prototypeName (name of your prototype, if your set your packageKey in the settings, you can omit it here) | `./flow generator:atom Text` |
-| `generator:molecule` | --prototypeName (name of your prototype, if your set your packageKey in the settings, you can omit it here) | `./flow generator:molecule TextWithImage` |
-| `generator:organism` | --prototypeName (name of your prototype, if your set your packageKey in the settings, you can omit it here) | `./flow generator:organism TextWithImage` |
-| `generator:template` | --prototypeName (name of your prototype, if your set your packageKey in the settings, you can omit it here) | `./flow generator:template Article` |
-| `generator:extendedrenderer` | --prototypeName (name of your prototype, if your set your packageKey in the settings, you can omit it here) | `./flow generator:extendedrenderer Vendor.Package:ExtendedRenderer` |
+| `generator:prototype` | --nodeType | `./flow generator:prototype Content.TextWithImage` |
+| `generator:atom` | --prototypeName | `./flow generator:atom Text` |
+| `generator:molecule` | --prototypeName | `./flow generator:molecule TextWithImage` |
+| `generator:organism` | --prototypeName | `./flow generator:organism TextWithImage` |
+| `generator:template` | --prototypeName | `./flow generator:template Article` |
+| `generator:extendedrenderer` | --prototypeName | `./flow generator:extendedrenderer Vendor.Package:ExtendedRenderer` |
 
-All commands support the `--force` parameter to overwrite files that are already created.
+💡 All commands support the `--force` parameter to overwrite files that are already created.
+💡 You can use the full name of your prototype, and if you set a packageKey in the settings, you can omit it here. (I.e. Neos.NodeTypes:Content.Text becomes Content.Text)
 
 ## 💡 Nice to know
 - The default templates add a `@Todo` in the generated files (you can modify this in the Settings) allowing you to use your IDE to see what you still must implement, probably best to remove it after you are done.
@@ -82,6 +83,13 @@ All commands support the `--force` parameter to overwrite files that are already
 - You can modify one or multiple templates. Or none if you like the defaults.
 - This is build with atomic fusion use in mind, but should be possible to be used without that.
 - Did I mention the generator created the content prototype and all atomic parts as well if you want it to? 😎
+
+## ⚠️ Warning
+At this point determination of either Document, ContentCollection or Content types is done by the nodename, which will be changed in an upcoming version to look at the superType instead.
+Using this package now means you have to name your nodeType like this:
+- `Vendor.Package:Document.Page`
+- `Vendor.Package:Content.Text`
+- `Vendor.Package:Collection.Section` | `Vendor.Package:ContentCollection.Section`
 
 ## 🧠 Thought about but not yet implemented...
 - Generate XLIFF files for all nodeTypes and defined language dimensions
