@@ -21,7 +21,7 @@ Not anymore! 😃
 
 Simply run the composer command to install the package.
 
-```composer require upassist/prototypegenerator```
+```composer require-dev upassist/prototypegenerator```
 
 ## How to setup
 
