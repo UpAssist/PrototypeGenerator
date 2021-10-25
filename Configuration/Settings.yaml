@@ -24,12 +24,15 @@ UpAssist:
       molecule: 'Neos.Fusion:Fragment'
       organism: 'Neos.Fusion:Augmenter'
       template: 'Neos.Fusion:Augmenter'
+      # Set the additional prototypes to be created when creating a document nodetype
       document:
         - template
+      # Set the additional prototypes to be created when creating a content nodetype
       content:
         - organism
         - molecule
         - atom
+      # Set the additional prototypes to be created when creating a collection nodetype
       collection:
         - organism
         - molecule

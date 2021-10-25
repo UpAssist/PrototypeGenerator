@@ -36,11 +36,15 @@ class GeneratorCommandController extends CommandController
      */
     protected $fusionService;
 
-    /**
-     * @throws \Neos\ContentRepository\Exception\NodeTypeNotFoundException
-     * @throws \Neos\Utility\Exception\FilesException
-     */
-    public function protoTypeCommand(string $nodeType = null, bool $force = false)
+  /**
+   * Renders prototypes for your nodetype
+   *
+   * @param string|null $nodeType
+   * @param bool $force
+   * @throws \Neos\ContentRepository\Exception\NodeTypeNotFoundException
+   * @throws \Neos\Utility\Exception\FilesException
+   */
+    public function prototypeCommand(string $nodeType = null, bool $force = false)
     {
         $nodeType = $this->fusionService->getPrototypeName($nodeType);
         $this->outputLine(sprintf('<info>💡 Looking for %s...</info>', $nodeType));
@@ -70,6 +74,7 @@ class GeneratorCommandController extends CommandController
     }
 
     /**
+     * Renders Atom prototype
      * @param string $prototypeName
      * @param bool $force
      * @throws \Neos\Utility\Exception\FilesException
@@ -80,6 +85,8 @@ class GeneratorCommandController extends CommandController
     }
 
     /**
+     * Renders Molecule prototype
+     *
      * @param string $prototypeName
      * @param bool $force
      * @throws \Neos\Utility\Exception\FilesException
@@ -90,6 +97,8 @@ class GeneratorCommandController extends CommandController
     }
 
     /**
+     * Renders Organism prototype
+     *
      * @param string $prototypeName
      * @param bool $force
      * @throws \Neos\Utility\Exception\FilesException
@@ -100,6 +109,8 @@ class GeneratorCommandController extends CommandController
     }
 
     /**
+     * Renders Template prototype
+     *
      * @param string $prototypeName
      * @param bool $force
      * @throws \Neos\Utility\Exception\FilesException
@@ -132,6 +143,8 @@ class GeneratorCommandController extends CommandController
     }
 
     /**
+     * Renders ExtendedRenderer prototype
+     *
      * @param string $prototypeName
      * @param bool $force
      * @throws \Neos\Utility\Exception\FilesException
