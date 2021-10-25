@@ -4,6 +4,8 @@
 
 This package lets you create scaffolding for prototypes for Neos using the commandline.
 
+![](https://p46.f4.n0.cdn.getcloudapp.com/items/GGu4k4pN/d492e2c4-28e8-4ca5-88ae-d838a7962c6c.gif?source=viewer&v=893eebfe8476b5bca3b54842ca7e6ebe)
+
 ## Why did you make this?
 
 Working with an Atomic setup in Neos often requires creating quite some files for a single NodeType.
