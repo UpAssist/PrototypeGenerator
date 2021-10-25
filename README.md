@@ -2,7 +2,7 @@
 
 ## What does this package do?
 
-> This package lets you create scaffolding for prototypes for Neos using the commandline.
+This package lets you create scaffolding for prototypes for Neos using the commandline.
 
 ## Why did you make this?
 
@@ -75,6 +75,7 @@ There are a couple of commands at your disposal:
 | `generator:extendedrenderer` | --prototypeName | `./flow generator:extendedrenderer Vendor.Package:ExtendedRenderer` |
 
 💡 All commands support the `--force` parameter to overwrite files that are already created.
+
 💡 You can use the full name of your prototype, and if you set a packageKey in the settings, you can omit it here. (I.e. Neos.NodeTypes:Content.Text becomes Content.Text)
 
 ## 💡 Nice to know
@@ -84,7 +85,7 @@ There are a couple of commands at your disposal:
 - This is build with atomic fusion use in mind, but should be possible to be used without that.
 - Did I mention the generator created the content prototype and all atomic parts as well if you want it to? 😎
 
-## ⚠️ Warning
+## ⚠️ Warning [#1](https://github.com/UpAssist/PrototypeGenerator/issues/1#issue-1035464011)
 At this point determination of either Document, ContentCollection or Content types is done by the nodename, which will be changed in an upcoming version to look at the superType instead.
 Using this package now means you have to name your nodeType like this:
 - `Vendor.Package:Document.Page`
@@ -92,12 +93,12 @@ Using this package now means you have to name your nodeType like this:
 - `Vendor.Package:Collection.Section` | `Vendor.Package:ContentCollection.Section`
 
 ## 🧠 Thought about but not yet implemented...
-- Generate XLIFF files for all nodeTypes and defined language dimensions
-- Implement more defaults for properties
+- Generate XLIFF files for all nodeTypes and defined language dimensions [#3](https://github.com/UpAssist/PrototypeGenerator/issues/3#issue-1035466387)
+- Implement more defaults for properties [#2](https://github.com/UpAssist/PrototypeGenerator/issues/2#issue-1035465542)
 - ...
 
 ## 🤔 Afterthought...
-This really was not meant to be ready and could probably be better thought through. However it works pretty decent for the setup I work with and am very happy with the amount oof time saved using this tool.
+This really was not meant to be ready and could probably be better thought through. However, it works pretty decent for the setup I work with and am very happy with the amount of time saved using this tool.
 I really hope it makes your Neos development life easier and welcome pull requests of course 😊
 
 Thanks for reading this far and if you like it, let me know 🙂.
