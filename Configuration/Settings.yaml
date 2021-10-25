@@ -1,0 +1,46 @@
+UpAssist:
+  PrototypeGenerator:
+    # Comment placed above every generated file (see the templates)
+    comment: '@Todo Implement Generated Prototype'
+    # Set a default packageKey and you don't have to write the full `Vendor.Package` prefix every time  (but you still can) (optional)
+    packageKey: ''
+    # If you don't want atomic prototypes nested in a folder, clear this value using `~` (optional)
+    atomicBaseFolder: 'Component'
+    # The folder where the extendedRenderer will be located, clear this value using `~` (optional)
+    helperFolder: 'Helper'
+    # Inheritance Prototypes (required)
+    inheritance:
+      default: 'Neos.Fusion:Component'
+      document: 'Neos.Fusion:Component'
+      content: 'Neos.Neos:ContentComponent'
+      collection: 'Neos.Neos:ContentCollection'
+      atomic: 'Neos.Fusion:Component'
+    # The rendering prototypes
+    # For document, content and collection you can list the additional prototypes to render
+    # Can be a prototype or a HTML tag (i.e. `section`, `div`)
+    rendering:
+      default: 'Neos.Fusion:Fragment'
+      atom: 'Neos.Fusion:Fragment'
+      molecule: 'Neos.Fusion:Fragment'
+      organism: 'Neos.Fusion:Augmenter'
+      template: 'Neos.Fusion:Augmenter'
+      document:
+        - template
+      content:
+        - organism
+        - molecule
+        - atom
+      collection:
+        - organism
+        - molecule
+        - atom
+    # List of types you also want to create a CSS file
+    renderCSS: ['template', 'organism', 'molecule', 'atom']
+    # List of types you also want to create a JS file
+    renderJS: ['organism']
+    # The file extension used for rendering the CSS file (i.e. `css`, `scss`, `sass`, `less`)
+    cssExtension: 'css'
+    # The file extension used for rendering the JS file (i.e. `js`, `jsx`)
+    jsExtension: 'js'
+    # The name for your extendedRenderer (optional, but required in the default setup since the default templates use this)
+    extendedRenderer: ''

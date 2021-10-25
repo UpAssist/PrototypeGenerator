@@ -1,0 +1,13 @@
+UpAssist:
+  PrototypeGenerator:
+    templates:
+      # 1 - Comment
+      # 2 - Prototype name
+      extendedRenderer: |
+        // With this Fusion object as renderer in a Neos.Fusion:Component
+        // it is possible to create private calculated properties
+        // See: https://discuss.neos.io/t/alternative-to-renderer-context-private/5473
+        prototype(%2$s) < prototype(Neos.Fusion:Component) {
+          @apply.props = ${props}
+          renderer = ''
+        }

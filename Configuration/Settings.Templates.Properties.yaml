@@ -1,0 +1,13 @@
+UpAssist:
+  PrototypeGenerator:
+    templates:
+      properties:
+        definition:
+          default: |
+            ${q(node).property('%s')}
+          inlineEditable: |
+            Neos.Neos:ContentElementEditable {
+              property = '%s'
+            }
+        rendering: |
+          {props.%s}

@@ -1,0 +1,21 @@
+UpAssist:
+  PrototypeGenerator:
+    templates:
+      # 1 - Comment
+      # 2 - Prototype name
+      # 3 - Inheritance Prototype
+      # 4 - Property definitions
+      # 5 - Renderer Prototype
+      content: |
+        // %1$s
+        prototype(%2$s) < prototype(%3$s) {
+
+            # Props
+            %4$s
+
+            # Rendering
+            renderer = %5$s {
+                @apply.props = ${props}
+            }
+
+        }

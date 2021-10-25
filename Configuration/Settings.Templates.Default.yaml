@@ -1,0 +1,60 @@
+UpAssist:
+  PrototypeGenerator:
+    templates:
+      # 1 - Comment
+      # 2 - Prototype name
+      # 3 - Inheritance Prototype
+      # 4 - Property definitions
+      # 5 - Renderer Prototype
+      # 6 - Property rendering
+      # 7 - ExtendedRenderer
+      default: |
+        // %1$s
+        prototype(%2$s) < prototype(%3$s) {
+
+            # Props
+            %4$s
+
+            # Rendering
+            renderer = %7$s {
+
+                renderer = afx`
+                    <%5$s>
+                        %6$s
+                    </%5$s>
+                `
+            }
+
+        }
+      # 1 - Comment
+      # 2 - Prototype name
+      # 3 - Inheritance Prototype
+      # 4 - PropTypes + defaults
+      # 5 - Renderer Prototype
+      # 6 - Property rendering
+      # 7 - ExtendedRenderer
+      atomic: |
+        // %1$s
+        prototype(%2$s) < prototype(%3$s) {
+
+            %4$s
+
+            # Rendering
+            renderer = %7$s {
+
+                renderer = afx`
+                    <%5$s>
+                        %6$s
+                    </%5$s>
+                `
+            }
+
+        }
+      # 1 - Property PropTypes
+      # 2 - Property Defaults
+      propTypes: |
+        @propTypes {
+              %1$s
+            }
+
+            %2$s

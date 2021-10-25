@@ -1,0 +1,22 @@
+UpAssist:
+  PrototypeGenerator:
+    templates:
+      # 1 - Comment
+      # 2 - Prototype name
+      # 3 - Inheritance Prototype
+      # 4 - Renderer Prototype
+      # 5 - Property definitions
+      document: |
+        // %1$s
+        prototype(%2$s) < prototype(%3$s) {
+
+            body = %4$s {
+                # Props
+                %5$s
+
+                # Todo:
+                #   - format code (indenting)
+                #   - implement ContentCollections
+            }
+
+        }
