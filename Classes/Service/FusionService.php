@@ -217,7 +217,19 @@ class FusionService
      */
     private function getPropertyDefault(string $property, array $propertyValue, string $epilogue): string
     {
-        return $property . ' = ' . ($propertyValue['type'] === 'string' ? "''" : null) . $epilogue;
+        switch ($propertyValue['type']) {
+            case 'integer':
+                $value = '0';
+                break;
+            case 'reference':
+            case 'references':
+                $value = 'null';
+                break;
+            case 'string':
+            default:
+                $value = "''";
+        }
+        return $property . ' = ' . $value . $epilogue;
     }
 
     /**
