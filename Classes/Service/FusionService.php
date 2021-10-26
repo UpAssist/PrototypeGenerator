@@ -60,7 +60,7 @@ class FusionService
         $inheritancePrototype = $this->getInheritancePrototype($prototype);
         $baseRenderPrototype = $this->getDefaultBaseRenderPrototype($prototype);
 
-        $this->writePrototypeToFiles($prototype, $inheritancePrototype, $baseRenderPrototype, $propertiesDefinition, $propertiesRendering, $propertiesPropTypes, $force);
+        $result = $this->writePrototypeToFiles($prototype, $inheritancePrototype, $baseRenderPrototype, $propertiesDefinition, $propertiesRendering, $propertiesPropTypes, $force);
 
         $additionalPrototypesToRender = [];
         foreach ($this->getAdditionalPrototypes($prototype) as $additionalPrototype) {
@@ -68,10 +68,10 @@ class FusionService
         }
 
         foreach ($additionalPrototypesToRender as $additionalPrototypeToRender) {
-            $this->writePrototypeToFiles($additionalPrototypeToRender, $inheritancePrototype, $this->getDefaultBaseRenderPrototype($additionalPrototypeToRender), $propertiesDefinition, $propertiesRendering, $propertiesPropTypes, $force);
+            $result = $this->writePrototypeToFiles($additionalPrototypeToRender, $inheritancePrototype, $this->getDefaultBaseRenderPrototype($additionalPrototypeToRender), $propertiesDefinition, $propertiesRendering, $propertiesPropTypes, $force);
         }
 
-        return true;
+        return $result;
     }
 
     /**
@@ -410,20 +410,25 @@ class FusionService
      * @param bool $force
      * @throws FilesException
      */
-    protected function writePrototypeToFiles(string $prototype, string $inheritancePrototype, string $baseRenderPrototype, string $propertiesDefinition, string $propertiesRendering, string $propTypes, bool $force = false): void
+    protected function writePrototypeToFiles(string $prototype, string $inheritancePrototype, string $baseRenderPrototype, string $propertiesDefinition, string $propertiesRendering, string $propTypes, bool $force = false): bool
     {
         $prototypeDefinition = $this->getPrototype($this->configuration, $prototype, $inheritancePrototype, $baseRenderPrototype, $propertiesDefinition, $propertiesRendering, $propTypes);
+        $result = false;
 
         if ($this->shouldGenerateCSS($prototype)) {
             $css = "/** Styles for {$prototype} */" . PHP_EOL;
-            FileService::writeFusionFile($prototype, $css, $force, $this->configuration['cssExtension']);
+            $result = FileService::writeFusionFile($prototype, $css, $force, $this->configuration['cssExtension']);
         }
 
         if ($this->shouldGenerateJS($prototype)) {
             $js = "// JavaScript for {$prototype}" . PHP_EOL;
-            FileService::writeFusionFile($prototype, $js, $force, $this->configuration['jsExtension']);
+            $result = FileService::writeFusionFile($prototype, $js, $force, $this->configuration['jsExtension']);
         }
 
-        FileService::writeFusionFile($prototype, $prototypeDefinition, $force);
+        if ($result !== false) {
+            return FileService::writeFusionFile($prototype, $prototypeDefinition, $force);
+        }
+
+        return false;
     }
 }
