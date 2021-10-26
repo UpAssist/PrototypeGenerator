@@ -34,6 +34,8 @@ UpAssist:
   PrototypeGenerator:
     # Set a default packageKey and you don't have to write the full `Vendor.Package` prefix every time  (but you still can) (optional)
     packageKey: ''
+    # Folder structure (in array format) leading to your package
+    packageParentFolder: ['DistributionPackages']
     # The rendering prototypes
     # For document, content and collection you can list the additional prototypes to render
     rendering:
