@@ -2,8 +2,10 @@
     "description": "A prototype generator to quickly generate prototypes based on nodetype definitions.",
     "type": "neos-package",
     "name": "upassist/prototypegenerator",
+    "license": "MIT",
     "require": {
-        "neos/flow": "*"
+        "neos/flow": "*",
+        "neos/neos": "*"
     },
     "autoload": {
         "psr-4": {

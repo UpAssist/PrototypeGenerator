@@ -336,7 +336,7 @@ class FusionService
             $prototypeName = $prototypeNameArray[0] . ':' . $this->configuration['helperFolder'] . '.' . $prototypeNameArray[1];
         }
 
-        return FileService::writeFusionFile($prototypeName, $prototype, $force);
+        return FileService::writeFusionFile($prototypeName, $prototype, $this->configuration['packageParentFolder'], $force);
     }
 
     /**
@@ -414,16 +414,18 @@ class FusionService
     {
         $prototypeDefinition = $this->getPrototype($this->configuration, $prototype, $inheritancePrototype, $baseRenderPrototype, $propertiesDefinition, $propertiesRendering, $propTypes);
 
-        if(FileService::writeFusionFile($prototype, $prototypeDefinition, $force)) {
+        if(FileService::writeFusionFile($prototype, $prototypeDefinition, $this->configuration['packageParentFolder'], $force)) {
             if ($this->shouldGenerateCSS($prototype)) {
                 $css = "/** Styles for {$prototype} */" . PHP_EOL;
-                FileService::writeFusionFile($prototype, $css, $force, $this->configuration['cssExtension']);
+                FileService::writeFusionFile($prototype, $css, $this->configuration['packageParentFolder'], $force, $this->configuration['cssExtension']);
             }
 
             if ($this->shouldGenerateJS($prototype)) {
                 $js = "// JavaScript for {$prototype}" . PHP_EOL;
-                FileService::writeFusionFile($prototype, $js, $force, $this->configuration['jsExtension']);
+                FileService::writeFusionFile($prototype, $js, $this->configuration['packageParentFolder'], $force, $this->configuration['jsExtension']);
             }
+        } else {
+            return false;
         }
 
         return true;

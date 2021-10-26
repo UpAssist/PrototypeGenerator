@@ -4,6 +4,8 @@ UpAssist:
     comment: '@Todo Implement Generated Prototype'
     # Set a default packageKey and you don't have to write the full `Vendor.Package` prefix every time  (but you still can) (optional)
     packageKey: ''
+    # Folder structure (in array format) leading to your package
+    packageParentFolder: ['DistributionPackages']
     # If you don't want atomic prototypes nested in a folder, clear this value using `~` (optional)
     atomicBaseFolder: 'Component'
     # The folder where the extendedRenderer will be located, clear this value using `~` (optional)

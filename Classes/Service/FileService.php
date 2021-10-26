@@ -27,7 +27,7 @@ class FileService
     /**
      * @throws FilesException
      */
-    public static function writeFusionFile(string $prototype, string $prototypeDefinition, bool $force = false, string $fileType = 'fusion'): bool
+    public static function writeFusionFile(string $prototype, string $prototypeDefinition, array $packageParentFolder = [], bool $force = false, string $fileType = 'fusion'): bool
     {
         $packageKey = explode(':', $prototype)[0];
         $fusionPath = explode(':', $prototype)[1];
@@ -38,7 +38,7 @@ class FileService
         }
         $fileNameAndPath = Files::concatenatePaths([
                 FLOW_PATH_ROOT,
-                'DistributionPackages',
+                implode(',', $packageParentFolder),
                 $packageKey,
                 'Resources',
                 'Private',
