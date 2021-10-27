@@ -31,14 +31,10 @@ UpAssist:
         - template
       # Set the additional prototypes to be created when creating a content nodetype
       content:
-        - organism
         - molecule
-        - atom
       # Set the additional prototypes to be created when creating a collection nodetype
       collection:
-        - organism
         - molecule
-        - atom
     # List of types you also want to create a CSS file
     renderCSS: ['template', 'organism', 'molecule', 'atom']
     # List of types you also want to create a JS file
