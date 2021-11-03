@@ -38,7 +38,7 @@ class FileService
         }
         $fileNameAndPath = Files::concatenatePaths([
                 FLOW_PATH_ROOT,
-                implode(',', $packageParentFolder),
+                implode('/', $packageParentFolder),
                 $packageKey,
                 'Resources',
                 'Private',
