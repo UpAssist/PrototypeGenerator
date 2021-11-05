@@ -53,7 +53,6 @@ class LocalisationService
         // @ Todo: check for Mixins...
         // @ Todo: proper checks before executing...
         $prototypeName = $this->fusionService->getPrototypeName($prototype);
-        dump($prototypeName, $prototype);
         $defaultLanguage = $this->configuration['languages']['default'];
         $additionalLanguages = $this->configuration['languages']['additional'];
         $defaultTemplate = $this->configuration['xlf']['structure']['default'];
