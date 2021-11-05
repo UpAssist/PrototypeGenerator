@@ -20,6 +20,7 @@ use Neos\Flow\Cli\CommandController;
 use Neos\Flow\Annotations as Flow;
 use Neos\Utility\Exception\FilesException;
 use UpAssist\PrototypeGenerator\Service\FusionService;
+use UpAssist\PrototypeGenerator\Service\LocalisationService;
 
 /**
  *
@@ -37,6 +38,12 @@ class GeneratorCommandController extends CommandController
      * @Flow\Inject
      */
     protected $fusionService;
+
+    /**
+     * @var LocalisationService
+     * @Flow\Inject
+     */
+    protected $localisationService;
 
   /**
    * Renders prototypes for your nodetype
@@ -61,9 +68,6 @@ class GeneratorCommandController extends CommandController
 
         // Read the nodetype definition
         $nodeType = $this->nodeTypeManager->getNodeType($nodeType);
-
-        // Generate the XLF file
-//        LocalisationService::generateXliff($nodeType->getLocalConfiguration(), $packageKey);
 
         // Generate the Prototype file and the definition
         if ($this->fusionService->generateProtoType($nodeType->getName(), $nodeType->getLocalConfiguration()['properties'], $force)) {
@@ -159,6 +163,23 @@ class GeneratorCommandController extends CommandController
         }
 
         $this->outputLine('<error>💡 Nothing done. To overwrite an existing file, add `--force` to your command. Please be aware this will make manual changes undone.</error>');
+        $this->sendAndExit();
+    }
+
+    /**
+     * Generate XLF files
+     *
+     * @param string $nodeType
+     * @param bool $force
+     */
+    public function xlfCommand(string $nodeType, bool $force = false)
+    {
+        if ($this->localisationService->generateXliff($nodeType, $force)) {
+            $this->outputLine('<info>Generated XLF file</info>');
+            $this->sendAndExit();
+        }
+
+        $this->outputLine('<error>Something went wrong...</error>');
         $this->sendAndExit();
     }
 }
