@@ -6,7 +6,7 @@ UpAssist:
           default: |
             ${q(node).property('%s')}
           inlineEditable: |
-            Neos.Neos:ContentElementEditable {
+            Neos.Neos:Editable {
               property = '%s'
             }
         rendering: |
