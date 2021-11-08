@@ -66,7 +66,7 @@ class GeneratorCommandController extends CommandController
 //        LocalisationService::generateXliff($nodeType->getLocalConfiguration(), $packageKey);
 
         // Generate the Prototype file and the definition
-        if ($this->fusionService->generateProtoType($nodeType->getName(), $nodeType->getLocalConfiguration()['properties'], $force)) {
+        if ($this->fusionService->generateProtoType($nodeType->getName(), isset($nodeType->getLocalConfiguration()['properties']) ? $nodeType->getLocalConfiguration()['properties'] : [], $force)) {
             $this->outputLine('<info>🚀 Prototype(s) successful generated. Please modify your file(s) when your nodeType definition is complete.</info>');
             $this->sendAndExit();
         }
