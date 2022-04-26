@@ -19,9 +19,28 @@ use Neos\Utility\Files;
 
 class FileService
 {
-    public static function writeLocalisationFile(): void
+    public static function writeLocalisationFile(string $nodeTypeName, string $contents, string $language, array $packageParentFolder = [], bool $force = false): bool
     {
+        $packageKey = explode(':', $nodeTypeName)[0];
+        $xlfPath = explode(':', $nodeTypeName)[1];
+        $fileNameAndPath = Files::concatenatePaths([
+                FLOW_PATH_ROOT,
+                implode('/', $packageParentFolder),
+                $packageKey,
+                'Resources',
+                'Private',
+                'Translations',
+                $language,
+                'NodeTypes'
+            ]) . '/' . str_replace('.', '/', $xlfPath) . '.xlf';
 
+        if (!file_exists($fileNameAndPath) || $force) {
+            Files::createDirectoryRecursively(dirname($fileNameAndPath));
+            file_put_contents($fileNameAndPath, $contents);
+            return true;
+        }
+
+        return false;
     }
 
     /**

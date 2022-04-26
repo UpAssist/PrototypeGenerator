@@ -1,0 +1,36 @@
+UpAssist:
+  PrototypeGenerator:
+
+    languages:
+      default: en
+      additional: ['nl','de']
+    xlf:
+      structure:
+        default: |
+          <?xml version="1.0" encoding="UTF-8"?>
+          <xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+              <file original="" product-name="%s" source-language="%s" datatype="plaintext">
+                  <body>
+                      %s
+                  </body>
+              </file>
+          </xliff>
+        additional: |
+          <?xml version="1.0" encoding="UTF-8"?>
+          <xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+              <file original="" product-name="%s" source-language="%s" datatype="plaintext" target-language="%s">
+                  <body>
+              %s
+                  </body>
+              </file>
+          </xliff>
+      label:
+        default: |
+          <trans-unit id="%s" xml:space="preserve">
+              <source>%s</source>
+          </trans-unit>
+        additional: |
+          <trans-unit id="%s" xml:space="preserve">
+              <source>%s</source>
+              <target>@Todo translate: %s</target>
+          </trans-unit>
