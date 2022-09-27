@@ -1,9 +1,9 @@
 UpAssist:
   PrototypeGenerator:
-
     languages:
       default: en
-      additional: ['nl','de']
+      # array of additional languages to create
+      additional: []
     xlf:
       structure:
         default: |
