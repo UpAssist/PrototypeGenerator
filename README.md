@@ -69,14 +69,15 @@ Take a look at all the Settings where you can set defaults for how you would lik
 
 There are a couple of commands at your disposal:
 
-| Command | Params | Example |
-| --- | --- | --- |
-| `generator:prototype` | --nodeType | `./flow generator:prototype Content.TextWithImage` |
-| `generator:atom` | --prototypeName | `./flow generator:atom Text` |
-| `generator:molecule` | --prototypeName | `./flow generator:molecule TextWithImage` |
-| `generator:organism` | --prototypeName | `./flow generator:organism TextWithImage` |
-| `generator:template` | --prototypeName | `./flow generator:template Article` |
+| Command                      | Params          | Example                                                             |
+|------------------------------|-----------------|---------------------------------------------------------------------|
+| `generator:prototype`        | --nodeType      | `./flow generator:prototype Content.TextWithImage`                  |
+| `generator:atom`             | --prototypeName | `./flow generator:atom Text`                                        |
+| `generator:molecule`         | --prototypeName | `./flow generator:molecule TextWithImage`                           |
+| `generator:organism`         | --prototypeName | `./flow generator:organism TextWithImage`                           |
+| `generator:template`         | --prototypeName | `./flow generator:template Article`                                 |
 | `generator:extendedrenderer` | --prototypeName | `./flow generator:extendedrenderer Vendor.Package:ExtendedRenderer` |
+| `generator:xlf`              | --nodeType      | `./flow generator:xlf Content.Text`                                 |
 
 💡 All commands support the `--force` parameter to overwrite files that are already created.
 
@@ -97,7 +98,7 @@ Using this package now means you have to name your nodeType like this:
 - `Vendor.Package:Collection.Section` | `Vendor.Package:ContentCollection.Section`
 
 ## 🧠 Thought about but not yet implemented...
-- Generate XLIFF files for all nodeTypes and defined language dimensions [#3](https://github.com/UpAssist/PrototypeGenerator/issues/3#issue-1035466387)
+- ~~Generate XLIFF files for all nodeTypes and defined language dimensions [#3](https://github.com/UpAssist/PrototypeGenerator/issues/3#issue-1035466387)~~
 - Implement more defaults for properties [#2](https://github.com/UpAssist/PrototypeGenerator/issues/2#issue-1035465542)
 - ...
 

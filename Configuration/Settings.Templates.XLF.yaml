@@ -26,11 +26,11 @@ UpAssist:
           </xliff>
       label:
         default: |
-          <trans-unit id="%s" xml:space="preserve">
+          <trans-unit id="%s">
               <source>%s</source>
           </trans-unit>
         additional: |
-          <trans-unit id="%s" xml:space="preserve">
+          <trans-unit id="%s">
               <source>%s</source>
               <target>@Todo translate: %s</target>
           </trans-unit>
