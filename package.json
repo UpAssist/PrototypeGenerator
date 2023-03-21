@@ -1,6 +1,6 @@
 {
   "name": "upassist.prototypegenerator",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "description": "Generate nodeType prototypes and xlf files for Neos",
   "main": "index.js",
   "scripts": {
