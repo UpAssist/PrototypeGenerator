@@ -204,7 +204,8 @@ class FusionService
      */
     private function getPropertyPropType(string $property, array $propertyValue, string $epilogue = ''): string
     {
-        return $property . ' = ${PropType.' . strtolower($propertyValue['type']) . '}' . $epilogue;
+        $type = isset($propertyValue['type']) ? strtolower($propertyValue['type']) : 'string';
+        return $property . ' = ${PropType.' . $type . '}' . $epilogue;
     }
 
     /**
@@ -217,18 +218,21 @@ class FusionService
      */
     private function getPropertyDefault(string $property, array $propertyValue, string $epilogue): string
     {
-        switch ($propertyValue['type']) {
-            case 'integer':
-                $value = '0';
-                break;
-            case 'reference':
-            case 'references':
-                $value = 'null';
-                break;
-            case 'string':
-            default:
-                $value = "''";
+
+        $value = "''";
+
+        if (isset($propertyValue['type'])) {
+            switch ($propertyValue['type']) {
+                case 'integer':
+                    $value = '0';
+                    break;
+                case 'reference':
+                case 'references':
+                    $value = 'null';
+                    break;
+            }
         }
+
         return $property . ' = ' . $value . $epilogue;
     }
 
