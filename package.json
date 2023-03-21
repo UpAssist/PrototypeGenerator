@@ -1,0 +1,23 @@
+{
+  "name": "upassist.prototypegenerator",
+  "version": "0.2.0",
+  "description": "Generate nodeType prototypes and xlf files for Neos",
+  "main": "index.js",
+  "scripts": {
+    "release:prerelease": "npx standard-version -t '' -r patch --prerelease && git push --follow-tags",
+    "release:patch": "npx standard-version -t '' -r patch && git push --follow-tags",
+    "release:minor": "npx standard-version -t '' -r minor && git push --follow-tags",
+    "release:major": "npx standard-version -t '' -r major && git push --follow-tags",
+    "release": "yarn release:patch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/UpAssist/PrototypeGenerator.git"
+  },
+  "author": "Henjo Hoeksma <henjo@upassist.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/UpAssist/PrototypeGenerator/issues"
+  },
+  "homepage": "https://github.com/UpAssist/PrototypeGenerator#readme"
+}
