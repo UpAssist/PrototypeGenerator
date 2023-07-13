@@ -15,6 +15,9 @@
     "extra": {
         "neos": {
             "package-key": "UpAssist.PrototypeGenerator"
-        }
+        },
+        "applied-flow-migrations": [
+            "TYPO3.Form-20160601101500"
+        ]
     }
 }
