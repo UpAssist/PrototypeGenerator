@@ -205,7 +205,7 @@ class FusionService
     private function getPropertyPropType(string $property, array $propertyValue, string $epilogue = ''): string
     {
         $type = isset($propertyValue['type']) ? strtolower($propertyValue['type']) : 'string';
-        return $property . ' = ${PropType.' . $type . '}' . $epilogue;
+        return $property . ' = ${PropTypes.' . $type . '}' . $epilogue;
     }
 
     /**
