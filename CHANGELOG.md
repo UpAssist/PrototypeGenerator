@@ -2,6 +2,8 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.0.0](https://github.com/UpAssist/PrototypeGenerator/compare/0.3.1...1.0.0) (2025-08-27)
+
 ### [0.3.1](https://github.com/UpAssist/PrototypeGenerator/compare/0.3.0...0.3.1) (2024-03-31)
 
 
