@@ -36,11 +36,8 @@ class LocalisationService
      */
     protected $fusionService;
 
-    /**
-     * @var NodeTypeManager
-     * @Flow\Inject
-     */
-    protected $nodeTypeManager;
+    #[\Neos\Flow\Annotations\Inject]
+    protected \Neos\ContentRepositoryRegistry\ContentRepositoryRegistry $contentRepositoryRegistry;
 
     public function __construct()
     {
@@ -59,7 +56,9 @@ class LocalisationService
         $additionalTemplate = $this->configuration['xlf']['structure']['additional'];
         $defaultLabelTemplate = $this->configuration['xlf']['label']['default'];
         $additionalLabelTemplate = $this->configuration['xlf']['label']['additional'];
-        $nodeTypeDefinition = $this->nodeTypeManager->getNodeType($prototypeName);
+        // TODO 9.0 migration: Make this code aware of multiple Content Repositories.
+        $contentRepository = $this->contentRepositoryRegistry->get(\Neos\ContentRepository\Core\SharedModel\ContentRepository\ContentRepositoryId::fromString('default'));
+        $nodeTypeDefinition = $contentRepository->getNodeTypeManager()->getNodeType($prototypeName);
         $labels = $this->labelHelper($nodeTypeDefinition->getLocalConfiguration(), 'label', $prototypeName);
         $labelsDefinition = '';
         $additionalLabelsDefinition = '';

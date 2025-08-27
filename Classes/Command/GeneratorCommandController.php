@@ -28,12 +28,6 @@ use UpAssist\PrototypeGenerator\Service\LocalisationService;
 class GeneratorCommandController extends CommandController
 {
     /**
-     * @var NodeTypeManager
-     * @Flow\Inject
-     */
-    protected $nodeTypeManager;
-
-    /**
      * @var FusionService
      * @Flow\Inject
      */
@@ -44,6 +38,8 @@ class GeneratorCommandController extends CommandController
      * @Flow\Inject
      */
     protected $localisationService;
+    #[\Neos\Flow\Annotations\Inject]
+    protected \Neos\ContentRepositoryRegistry\ContentRepositoryRegistry $contentRepositoryRegistry;
 
   /**
    * Renders prototypes for your nodetype
@@ -57,17 +53,21 @@ class GeneratorCommandController extends CommandController
     {
         $nodeType = $this->fusionService->getPrototypeName($nodeType);
         $this->outputLine(sprintf('<info>💡 Looking for %s...</info>', $nodeType));
+        // TODO 9.0 migration: Make this code aware of multiple Content Repositories.
+        $contentRepository = $this->contentRepositoryRegistry->get(\Neos\ContentRepository\Core\SharedModel\ContentRepository\ContentRepositoryId::fromString('default'));
 
-        if (!$this->nodeTypeManager->hasNodeType($nodeType)) {
+        if (!$contentRepository->getNodeTypeManager()->hasNodeType($nodeType)) {
             $this->outputLine('<error>💩 The nodeType you provided does not seem to exist...</error>');
             $this->sendAndExit();
         }
 
         $this->outputLine('<info>🚀 NodeType found.</info>');
         $this->outputLine('<comment>🌱 Starting generation...</comment>');
+        // TODO 9.0 migration: Make this code aware of multiple Content Repositories.
+        $contentRepository = $this->contentRepositoryRegistry->get(\Neos\ContentRepository\Core\SharedModel\ContentRepository\ContentRepositoryId::fromString('default'));
 
         // Read the nodetype definition
-        $nodeType = $this->nodeTypeManager->getNodeType($nodeType);
+        $nodeType = $contentRepository->getNodeTypeManager()->getNodeType($nodeType);
 
         // Generate the Prototype file and the definition
         if ($this->fusionService->generateProtoType($nodeType->getName(), isset($nodeType->getLocalConfiguration()['properties']) ? $nodeType->getLocalConfiguration()['properties'] : [], $force)) {
