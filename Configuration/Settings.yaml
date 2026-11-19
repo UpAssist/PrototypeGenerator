@@ -4,6 +4,8 @@ UpAssist:
     comment: '@Todo Implement Generated Prototype'
     # Set a default packageKey and you don't have to write the full `Vendor.Package` prefix every time  (but you still can) (optional)
     packageKey: ''
+    # Content Repository to read NodeType definitions from (Neos 9 only, ignored on Neos 8)
+    contentRepository: 'default'
     # Folder structure (in array format) leading to your package
     packageParentFolder: ['DistributionPackages']
     # If you don't want atomic prototypes nested in a folder, clear this value using `~` (optional)
