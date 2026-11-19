@@ -17,6 +17,14 @@ time.
 
 Not anymore! 😃
 
+## Compatibility
+
+| Version | Neos |
+| --- | --- |
+| 1.1.x | 8.3, 8.4, 9.0, 9.1, 9.2 |
+| 1.0.0 | Neos 9 only, and `generator:prototype` is broken: use 1.1 |
+| 0.3.x | Neos 8 |
+
 ## ⚙️ How to install
 
 Simply run the composer command to install the package.
