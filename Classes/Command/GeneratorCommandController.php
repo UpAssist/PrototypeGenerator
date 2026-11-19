@@ -14,13 +14,12 @@ namespace UpAssist\PrototypeGenerator\Command;
  * UpAssist, <info@upassist.com>
  */
 
-use Neos\ContentRepository\Domain\Service\NodeTypeManager;
-use Neos\ContentRepository\Exception\NodeTypeNotFoundException;
 use Neos\Flow\Cli\CommandController;
 use Neos\Flow\Annotations as Flow;
 use Neos\Utility\Exception\FilesException;
 use UpAssist\PrototypeGenerator\Service\FusionService;
 use UpAssist\PrototypeGenerator\Service\LocalisationService;
+use UpAssist\PrototypeGenerator\Service\NodeTypeService;
 
 /**
  *
@@ -38,39 +37,37 @@ class GeneratorCommandController extends CommandController
      * @Flow\Inject
      */
     protected $localisationService;
-    #[\Neos\Flow\Annotations\Inject]
-    protected \Neos\ContentRepositoryRegistry\ContentRepositoryRegistry $contentRepositoryRegistry;
+
+    /**
+     * @var NodeTypeService
+     * @Flow\Inject
+     */
+    protected $nodeTypeService;
 
   /**
    * Renders prototypes for your nodetype
    *
    * @param string|null $nodeType
    * @param bool $force
-   * @throws NodeTypeNotFoundException
    * @throws FilesException
    */
     public function prototypeCommand(string $nodeType, bool $force = false)
     {
         $nodeType = $this->fusionService->getPrototypeName($nodeType);
         $this->outputLine(sprintf('<info>💡 Looking for %s...</info>', $nodeType));
-        // TODO 9.0 migration: Make this code aware of multiple Content Repositories.
-        $contentRepository = $this->contentRepositoryRegistry->get(\Neos\ContentRepository\Core\SharedModel\ContentRepository\ContentRepositoryId::fromString('default'));
-
-        if (!$contentRepository->getNodeTypeManager()->hasNodeType($nodeType)) {
+        if (!$this->nodeTypeService->hasNodeType($nodeType)) {
             $this->outputLine('<error>💩 The nodeType you provided does not seem to exist...</error>');
             $this->sendAndExit();
         }
 
         $this->outputLine('<info>🚀 NodeType found.</info>');
         $this->outputLine('<comment>🌱 Starting generation...</comment>');
-        // TODO 9.0 migration: Make this code aware of multiple Content Repositories.
-        $contentRepository = $this->contentRepositoryRegistry->get(\Neos\ContentRepository\Core\SharedModel\ContentRepository\ContentRepositoryId::fromString('default'));
 
         // Read the nodetype definition
-        $nodeType = $contentRepository->getNodeTypeManager()->getNodeType($nodeType);
+        $properties = $this->nodeTypeService->getLocalConfiguration($nodeType)['properties'] ?? [];
 
         // Generate the Prototype file and the definition
-        if ($this->fusionService->generateProtoType($nodeType->getName(), isset($nodeType->getLocalConfiguration()['properties']) ? $nodeType->getLocalConfiguration()['properties'] : [], $force)) {
+        if ($this->fusionService->generateProtoType($nodeType, $properties, $force)) {
             $this->outputLine('<info>🚀 Prototype(s) successful generated. Please modify your file(s) when your nodeType definition is complete.</info>');
             $this->sendAndExit();
         }
